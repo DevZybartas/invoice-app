@@ -1,17 +1,8 @@
-import express from "express";
-import "dotenv/config";
+import app from "./app";
 import connectDB from "./utils/db";
-import env from './utils/validateEnv'
-
-const app = express();
+import env from "./utils/validateEnv";
 
 const PORT = env.PORT;
-
-app.get("/", (req, res) => {
-  res.send("hello world");
-});
-
-
 
 connectDB();
 
