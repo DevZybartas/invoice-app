@@ -8,5 +8,7 @@ router.get("/", InvoiceControllers.getInvoices);
 router.get("/:invoiceId", InvoiceControllers.getInvoice);
 //Create invoice route
 router.post("/", InvoiceControllers.createInvoice);
+//Upadate invoice
+router.patch("/:noteId", InvoiceControllers.updateInvoice);
 
 export default router;

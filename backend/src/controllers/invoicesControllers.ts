@@ -61,3 +61,24 @@ export const createInvoice: RequestHandler = async (req, res, next) => {
     next(error);
   }
 };
+
+
+// @desc    Update invoice
+// @route   PATCH /api/invoice/id
+// @access  Public
+
+export const updateInvoice:RequestHandler = async (req, res,next) => {
+  try {
+    const updatedInvoice = await InvoiceModel.findByIdAndUpdate(
+      req.params.id,
+
+      {
+        $set: req.body,
+      },
+      { new: true }
+    );
+    res.status(200).json(updatedInvoice);
+  } catch (error) {
+    next(error)
+  }
+};
