@@ -1,5 +1,7 @@
 import { RequestHandler } from "express";
 import InvoiceModel from "../models/invoice";
+import createHttpError from "http-errors";
+import mongoose, { Query } from "mongoose";
 
 // @desc    Get all movies
 // @route   GET /api/invoices
@@ -32,7 +34,24 @@ export const getInvoice: RequestHandler = async (req, res, next) => {
 // @route   POST /api/invoices
 // @access  Public
 
-export const createInvoice: RequestHandler = async (req, res, next) => {
+interface CreateInvc {
+  streetAddress: string;
+  city: string;
+  postCode: number;
+  country: string;
+  clientName: string;
+  clientEmail: string;
+  invoiceDate: number;
+  paymentTerms: number;
+  projectDesc: string;
+}
+
+export const createInvoice: RequestHandler<
+  unknown,
+  unknown,
+  CreateInvc,
+  unknown
+> = async (req, res, next) => {
   const {
     streetAddress,
     city,
@@ -62,15 +81,20 @@ export const createInvoice: RequestHandler = async (req, res, next) => {
   }
 };
 
-
 // @desc    Update invoice
 // @route   PATCH /api/invoice/id
 // @access  Public
 
-export const updateInvoice:RequestHandler = async (req, res,next) => {
+export const updateInvoice: RequestHandler = async (req, res, next) => {
+  const invoiceId = req.params.invoiceId;
+
+  console.log(req.body);
   try {
+    if (!mongoose.isValidObjectId(invoiceId)) {
+      throw createHttpError(400, "Invalid note id");
+    }
     const updatedInvoice = await InvoiceModel.findByIdAndUpdate(
-      req.params.id,
+      invoiceId,
 
       {
         $set: req.body,
@@ -79,6 +103,20 @@ export const updateInvoice:RequestHandler = async (req, res,next) => {
     );
     res.status(200).json(updatedInvoice);
   } catch (error) {
-    next(error)
+    next(error);
+  }
+};
+
+// @desc    Delete invoice
+// @route   Delete /api/invoice/id
+// @access  Public
+
+export const deleteInvoice: RequestHandler = async (req, res, next) => {
+  const invoiceId = req.params.invoiceId;
+  try {
+    const deletedInvoice = await InvoiceModel.findByIdAndDelete(invoiceId);
+    res.status(204).json(deletedInvoice);
+  } catch (error) {
+    next(error);
   }
 };
