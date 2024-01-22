@@ -22,6 +22,7 @@ body {
   min-height: 100vh;
   text-rendering: optimizeSpeed;
   font-size: 1rem;
+  
 }
 
 img,

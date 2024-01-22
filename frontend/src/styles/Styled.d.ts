@@ -5,7 +5,7 @@ import "styled-components";
 declare module "styled-components" {
   export interface DefaultTheme {
     colors: {
-      primary: "#7C5DFA";
+      purple: "#7C5DFA";
     };
     fonts: {};
     paddings: {
