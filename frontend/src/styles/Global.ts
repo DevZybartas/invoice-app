@@ -22,7 +22,9 @@ body {
   min-height: 100vh;
   text-rendering: optimizeSpeed;
   font-size: 1rem;
-  
+  background-color: ${({ theme }) => theme.backgroundColor};
+  color: ${({ theme }) => theme.text};
+  font-family: 'League Spartan', sans-serif;
 }
 
 img,
