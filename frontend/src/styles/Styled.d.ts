@@ -18,6 +18,7 @@ declare module "styled-components" {
       lightBg11: "#F8F8FB";
       black12: "#141625";
       white: "#FFFFFF";
+      grey: "#979797";
     };
     fonts: {};
     paddings: {
