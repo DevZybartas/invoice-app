@@ -1,33 +1,16 @@
-import styled from "styled-components";
-import { HeadingL } from "./styles/Headings";
-import { useThemeContext } from "./context/ThemeContext";
-import { Mode } from "./types/Theme";
-import { Button1 } from "./styles/Buttons";
-interface ButtonProps {
-  primary?: boolean;
-}
+import { Routes, Route } from "react-router-dom";
+import Layout from "./components/layout/Layout";
+import Home from "./components/pages/Home/Home";
 
-const Button = styled.button<ButtonProps>`
-  border: 1px solid red;
-`;
-
-const Container = styled.div`
-  background-color: ${({ theme }) => theme.backgroundColor};
-`;
-
-const App: React.FC = () => {
-  const { mode, changeMode } = useThemeContext();
-
-  const toggleMode = () => {
-    changeMode(mode === Mode.Light ? Mode.Dark : Mode.Light);
-  };
+const App = () => {
   return (
-    <Container>
-      <Button>Default Button</Button>
-      <Button primary>Primary Button</Button>
-      <HeadingL>Spartan</HeadingL>
-      <Button1 onClick={() => toggleMode()}></Button1>
-    </Container>
+    <>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+        </Routes>
+      </Layout>
+    </>
   );
 };
 export default App;
