@@ -33,9 +33,12 @@ export const theme: DefaultTheme = {
 export const lightTheme = {
   backgroundColor: "white",
   text: "#333333",
+  NavbarBgColor: "#373B53",
 };
 
 export const darkTheme = {
+  // mobile navbar
+  NavbarBgColor: "#1E2139",
   backgroundColor: "black",
   text: "#FFFFFF",
 };

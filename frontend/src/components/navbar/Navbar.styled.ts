@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const NavbarContainer = styled.nav`
   width: 100%;
   height: 72px;
-  background-color: #373b53;
+  background-color: ${({ theme }) => theme.NavbarBgColor};
   display: flex;
   align-items: center;
 `;
@@ -15,7 +15,7 @@ export const Box = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     padding-right: 1.375rem;
   }
 `;
