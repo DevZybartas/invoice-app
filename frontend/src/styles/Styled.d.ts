@@ -22,7 +22,7 @@ declare module "styled-components" {
     };
     fonts: {};
     paddings: {
-      container: "15px";
+      mobile: "1.375rem";
       pageTop: "30px";
     };
     margins: {
