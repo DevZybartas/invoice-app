@@ -14,6 +14,7 @@ export const HeadingM = styled.h2`
   line-height: 1.375rem;
   letter-spacing: -0.0469rem;
   font-family: "League Spartan";
+  margin: 0;
 `;
 
 export const HeadingS = styled.h3`
@@ -38,6 +39,7 @@ export const BodyText = styled.p`
   line-height: 1.125rem;
   letter-spacing: -0.0156rem;
   font-family: "League Spartan";
+  margin: 0;
 `;
 
 export const BodyTextVariant = styled.p`

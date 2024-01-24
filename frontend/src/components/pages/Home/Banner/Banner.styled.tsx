@@ -20,27 +20,65 @@ export const FlexBox = styled.div`
 `;
 
 export const BoxLeft = styled.div`
-  border: 2px solid black;
+  display: flex;
   @media ${device.mobile} {
-    width: 77%;
+    width: 72%;
     height: 100%;
+    justify-content: space-between;
+    align-items: center;
   }
 `;
 
 export const BoxRight = styled.div`
-  border: 1px solid red;
   @media ${device.mobile} {
-    width: 23%;
+    width: 28%;
     height: 100%;
   }
 `;
 
 export const Box = styled.div`
   @media ${device.mobile} {
-    border: 1px solid green;
     width: 4.875rem;
     height: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+  }
+`;
+
+export const BannerButton = styled.div`
+  @media ${device.mobile} {
+    width: 5.625rem;
+    height: 2.75rem;
+    border-radius: 1.5rem;
+    background-color: ${({ theme }) => theme.colors.purple01};
+    color: white;
+    display: flex;
+
+    align-items: center;
+  }
+`;
+
+// Button Plus Icon
+export const PlusIcon = styled.img``;
+
+export const IconBox = styled.div`
+  display: flex;
+  @media ${device.mobile} {
+    width: 2rem;
+    height: 2rem;
+    background-color: white;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    margin-left: 0.375rem;
+    margin-right: 0.5rem;
+  }
+`;
+
+export const ArrowDown = styled.img`
+  @media ${device.mobile} {
+    width: 9px;
+    height: 0.3125rem;
   }
 `;
