@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { device } from "../../styles/Breakpoints";
 
 export const NavbarContainer = styled.nav`
   width: 100%;
@@ -15,13 +16,13 @@ export const Box = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  @media (max-width: 767px) {
-    padding-right: 1.375rem;
+  @media ${device.mobile} {
+    padding-right: 22px;
   }
 `;
 
 export const ThemeImg = styled.img`
-  @media (max-width: 768px) {
+  @media ${device.mobile} {
   }
 `;
 
