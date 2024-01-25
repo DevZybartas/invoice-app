@@ -19,7 +19,7 @@ const theme = extendTheme({
     },
   },
 
-  paddings: {
+  space: {
     mobile: {
       22: "1.375rem",
     },

@@ -7,7 +7,7 @@ const HomePage = () => {
       width="100%"
       border="1px solid red"
       h="100vh"
-      padding="mobile.22"
+      paddingX="mobile.22"
     >
       <Banner />
     </Flex>
