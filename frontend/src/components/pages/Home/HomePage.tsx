@@ -1,15 +1,10 @@
-//Components
-import Banner from "./Banner/Banner";
-
-// Styled components
-
-import { Wrapper } from "./HomePage.styled";
+import { Flex, Text } from "@chakra-ui/react";
 
 const HomePage = () => {
   return (
-    <Wrapper>
-      <Banner />
-    </Wrapper>
+    <Flex as="section" border="1px solid red" h="100%">
+      <Text color="color.1">H1</Text>
+    </Flex>
   );
 };
 
