@@ -18,6 +18,17 @@ const theme = extendTheme({
       12: "#141625",
     },
   },
+
+  paddings: {
+    mobile: {
+      22: "1.375rem",
+    },
+  },
+
+  config: {
+    initialColorMode: "light",
+    useSystemColorMode: false,
+  },
 });
 
 export default theme;

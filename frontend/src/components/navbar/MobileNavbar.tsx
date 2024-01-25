@@ -1,9 +1,12 @@
-import { Flex, Image } from "@chakra-ui/react";
+import { Flex, Image, useColorMode, useColorModeValue } from "@chakra-ui/react";
 
 const MobileNavbar = () => {
+  const { colorMode, toggleColorMode } = useColorMode();
+  console.log(colorMode);
+  const bg = useColorModeValue("color.4", "color.3");
   return (
     <Flex as="header" width="100%" height="4.5rem">
-      <Flex as="nav" width="100%" bgColor="color.4">
+      <Flex as="nav" width="100%" bgColor={bg}>
         <Flex width="100%">
           <Flex
             width={{ base: "78%" }}
@@ -27,12 +30,28 @@ const MobileNavbar = () => {
                 height={{ base: "1.625rem" }}
               />
             </Flex>
-            <Image
-              src="/icon-moon.svg"
+            <Flex
               width={{ base: "1.25rem" }}
               height={{ base: "1.25rem" }}
+              bg="transparent"
               marginRight={{ base: "1.375rem" }}
-            />
+            >
+              {colorMode === "light" ? (
+                <Image
+                  src="/icon-moon.svg"
+                  width={{ base: "1.25rem" }}
+                  height={{ base: "1.25rem" }}
+                  onClick={toggleColorMode}
+                />
+              ) : (
+                <Image
+                  src="/icon-sun.svg"
+                  width={{ base: "1.25rem" }}
+                  height={{ base: "1.25rem" }}
+                  onClick={toggleColorMode}
+                />
+              )}
+            </Flex>
           </Flex>
           <Flex
             width={{ base: "22%" }}

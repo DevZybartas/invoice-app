@@ -1,9 +1,15 @@
-import { Flex, Text } from "@chakra-ui/react";
-
+import { Flex } from "@chakra-ui/react";
+import Banner from "./Banner/Banner";
 const HomePage = () => {
   return (
-    <Flex as="section" border="1px solid red" h="100%">
-      <Text color="color.1">H1</Text>
+    <Flex
+      as="section"
+      width="100%"
+      border="1px solid red"
+      h="100vh"
+      padding="mobile.22"
+    >
+      <Banner />
     </Flex>
   );
 };
