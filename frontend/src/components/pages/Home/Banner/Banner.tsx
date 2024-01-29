@@ -1,11 +1,16 @@
 import { Flex, Text, Image, Button } from "@chakra-ui/react";
+import {
+  HeadingM,
+  BodyTextVariant,
+  HeadingS,
+} from "../../../../styles/Typography";
 
 const Banner = () => {
   return (
     <Flex
       width={{ base: "100%" }}
       height={{ base: "2.75rem" }}
-      border="2px solid green"
+      mt={{ base: "1.875rem" }}
     >
       <Flex
         width={{ base: "77%" }}
@@ -18,15 +23,19 @@ const Banner = () => {
           border="1px solid white"
         >
           <Flex flexDir={{ base: "column" }}>
-            <Text>Invoices</Text>
-            <Text>7 Invoices</Text>
+            <Text {...HeadingM}>Invoices</Text>
+            <Text {...BodyTextVariant} opacity="0.5">
+              7 Invoices
+            </Text>
           </Flex>
 
           <Flex
             alignItems={{ base: "center" }}
             justifyContent={{ base: "center" }}
+            border="1px solid red"
+            width={{ base: "30%" }}
           >
-            <Text>Filter</Text>
+            <Text {...HeadingS}>Filter</Text>
             <Image
               src="/icon-arrow-down.svg"
               alt="arrow-down"
