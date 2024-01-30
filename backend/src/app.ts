@@ -3,13 +3,14 @@ import "dotenv/config";
 import morgan from "morgan";
 import createHttpError, { isHttpError } from "http-errors";
 import invoicesRoutes from "./routes/invoicesRoutes";
+import cors from "cors";
 
 const app = express();
 
 // accept jason bodies
 app.use(express.json());
 app.use(morgan("dev"));
-
+app.use(cors());
 app.use("/api/invoices", invoicesRoutes);
 
 // Errors handling middleware
