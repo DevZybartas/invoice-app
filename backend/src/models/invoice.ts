@@ -10,6 +10,7 @@ const invoiceSchema = new Schema({
   invoiceDate: { type: Date, required: true },
   paymentTerms: { type: Number, required: true },
   projectDesc: { type: String },
+  price: { type: Number },
 });
 
 type Invoice = InferSchemaType<typeof invoiceSchema>;

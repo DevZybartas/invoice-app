@@ -1,7 +1,7 @@
 import { RequestHandler } from "express";
 import InvoiceModel from "../models/invoice";
 import createHttpError from "http-errors";
-import mongoose, { Query } from "mongoose";
+import mongoose from "mongoose";
 
 // @desc    Get all movies
 // @route   GET /api/invoices
@@ -44,6 +44,7 @@ interface CreateInvc {
   invoiceDate: number;
   paymentTerms: number;
   projectDesc: string;
+  price: number;
 }
 
 export const createInvoice: RequestHandler<
@@ -62,6 +63,7 @@ export const createInvoice: RequestHandler<
     invoiceDate,
     paymentTerms,
     projectDesc,
+    price,
   } = req.body;
   try {
     const newInvoice = await InvoiceModel.create({
@@ -74,6 +76,7 @@ export const createInvoice: RequestHandler<
       invoiceDate,
       paymentTerms,
       projectDesc,
+      price,
     });
     res.status(201).json(newInvoice);
   } catch (error) {
