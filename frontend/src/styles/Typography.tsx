@@ -24,7 +24,7 @@ export const HeadingS: BoxProps = {
 export const HeadingSVariant: BoxProps = {
   fontSize: { base: "0.938rem" },
   lineHeight: { base: "0.938rem" },
-  letterSpacing: { base: "-0.156rem" },
+  letterSpacing: { base: "-0.1px" },
   fontWeight: "bold",
 };
 

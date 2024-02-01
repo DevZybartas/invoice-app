@@ -23,6 +23,7 @@ const theme = extendTheme({
   space: {
     mobile: {
       22: "1.375rem",
+      24: "1.5rem",
     },
   },
 
