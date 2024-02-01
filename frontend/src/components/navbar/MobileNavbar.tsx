@@ -2,7 +2,6 @@ import { Flex, Image, useColorMode, useColorModeValue } from "@chakra-ui/react";
 
 const MobileNavbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
-  console.log(colorMode);
   const bg = useColorModeValue("color.4", "color.3");
   return (
     <Flex as="header" width="100%" height="4.5rem">
