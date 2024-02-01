@@ -1,23 +1,15 @@
-import { useQuery } from "react-query";
-import axios from "axios";
+//Components
 import Invoice from "./Invoice";
 
 //Types
-
 import { InvoiceItem } from "../../../../types/types";
-const Invoices = () => {
-  const getInvoices = async () => {
-    try {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const response = await axios.get("http://localhost:5000/api/invoices");
-      return response.data;
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
-  const { data, status, isLoading } = useQuery("invoices", getInvoices);
-  console.log(data);
+//Context
+import { useContext } from "react";
+import { InvoiceContext } from "../../../../context/InvoiceContext";
+
+const Invoices = () => {
+  const { data, isLoading, status } = useContext(InvoiceContext);
 
   if (isLoading) {
     return <p>Loading...</p>;
