@@ -1,5 +1,7 @@
 import { Routes, Route } from "react-router-dom";
+//Layout
 import Layout from "./components/layout/Layout";
+//Components
 import HomePage from "./components/pages/Home/HomePage";
 import InvoiceDetail from "./components/pages/Home/Invoices/InvoiceDetail/InvoiceDetail";
 

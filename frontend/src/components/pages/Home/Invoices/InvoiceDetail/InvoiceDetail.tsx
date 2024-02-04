@@ -5,6 +5,8 @@ import { HeadingSVariant } from "../../../../../styles/Typography";
 //Components
 import Status from "./Status";
 import InvoiceBody from "./InvoiceBody";
+import Summary from "./Summary";
+import InvoiceButtons from "./InvoiceButtons";
 
 const InvoiceDetail = () => {
   return (
@@ -33,6 +35,10 @@ const InvoiceDetail = () => {
       {/* Status */}
 
       <InvoiceBody />
+
+      <Summary />
+
+      <InvoiceButtons />
     </Flex>
   );
 };

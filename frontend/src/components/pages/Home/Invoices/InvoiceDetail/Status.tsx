@@ -7,7 +7,6 @@ const Status = () => {
       height={{ base: "5.6875rem" }}
       justifyContent={{ base: "space-between" }}
       alignItems={{ base: "center" }}
-      border="2px solid red"
       paddingX={{ base: "24px" }}
     >
       <Text>Status</Text>

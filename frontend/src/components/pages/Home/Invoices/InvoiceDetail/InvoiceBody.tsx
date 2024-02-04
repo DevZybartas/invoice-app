@@ -5,8 +5,7 @@ const InvoiceBody = () => {
   return (
     <Flex
       width={{ base: "100%" }}
-      height={{ base: "43.4375rem" }}
-      border="1px solid red"
+      height={{ base: "100%" }}
       padding={{ base: "mobile.24" }}
       flexDir={{ base: "column" }}
     >
@@ -26,7 +25,7 @@ const InvoiceBody = () => {
       {/* Invoice address */}
 
       {/* Invoice Date */}
-      <Flex width={{ base: "100%" }} border="1px solid red">
+      <Flex width={{ base: "100%" }}>
         <Flex width={{ base: "100%" }} flexDir={{ base: "column" }}>
           {/* Invoice Date */}
           <Flex flexDir={{ base: "column" }}>
@@ -71,11 +70,7 @@ const InvoiceBody = () => {
           </Flex>
           {/* Sent to */}
         </Flex>
-        <Flex
-          width={{ base: "60%" }}
-          flexDir={{ base: "column" }}
-          border="1px solid black"
-        >
+        <Flex width={{ base: "60%" }} flexDir={{ base: "column" }}>
           <Flex flexDir={{ base: "column" }}>
             <Text
               {...BodyText}
