@@ -1,10 +1,19 @@
 import { InferSchemaType, Schema, model } from "mongoose";
 
 const invoiceSchema = new Schema({
-  streetAddress: { type: String, required: true },
-  city: { type: String },
-  postCode: { type: Number },
-  country: { type: String },
+  clientAddress: {
+    streetAddress: { type: String },
+    city: { type: String },
+    postCode: { type: Number },
+    country: { type: String },
+  },
+
+  address: {
+    streetAddress: { type: String },
+    city: { type: String },
+    postCode: { type: Number },
+    country: { type: String },
+  },
   clientName: { type: String, required: true },
   clientEmail: { type: String, required: true },
   invoiceDate: { type: Date, required: true },

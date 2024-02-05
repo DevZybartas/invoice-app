@@ -35,16 +35,25 @@ export const getInvoice: RequestHandler = async (req, res, next) => {
 // @access  Public
 
 interface CreateInvc {
-  streetAddress: string;
-  city: string;
-  postCode: number;
-  country: string;
   clientName: string;
   clientEmail: string;
   invoiceDate: number;
   paymentTerms: number;
   projectDesc: string;
   price: number;
+  clientAddress: {
+    streetAddress: string;
+    city: string;
+    postCode: number;
+    country: string;
+  };
+
+  address: {
+    streetAddress: string;
+    city: string;
+    postCode: number;
+    country: string;
+  };
 }
 
 export const createInvoice: RequestHandler<
@@ -54,10 +63,8 @@ export const createInvoice: RequestHandler<
   unknown
 > = async (req, res, next) => {
   const {
-    streetAddress,
-    city,
-    postCode,
-    country,
+    clientAddress,
+    address,
     clientName,
     clientEmail,
     invoiceDate,
@@ -67,10 +74,8 @@ export const createInvoice: RequestHandler<
   } = req.body;
   try {
     const newInvoice = await InvoiceModel.create({
-      streetAddress,
-      city,
-      postCode,
-      country,
+      clientAddress,
+      address,
       clientEmail,
       clientName,
       invoiceDate,

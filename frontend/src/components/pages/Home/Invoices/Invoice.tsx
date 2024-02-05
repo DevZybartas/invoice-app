@@ -32,7 +32,7 @@ const Invoice: React.FC<InvoiceItem> = ({
               <Text as="span" color="color.6">
                 #
               </Text>
-              RT3080
+              {_id.slice(0, 5)}
             </Text>
             <Text {...BodyTextVariant} color="color.6">
               {clientName}

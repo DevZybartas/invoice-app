@@ -37,6 +37,7 @@ export const InvoiceContextProvider = ({ children }: InvoiceProvider) => {
     "invoices",
     getInvoices
   );
+  console.log(data);
 
   return (
     <InvoiceContext.Provider value={{ getInvoices, data, status, isLoading }}>

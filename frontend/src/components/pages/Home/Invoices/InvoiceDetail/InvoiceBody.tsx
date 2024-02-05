@@ -26,6 +26,8 @@ const InvoiceBody = () => {
             clientName,
             paymentTerms,
             projectDesc,
+            clientAddress,
+            address,
           }) => (
             <Flex
               width={{ base: "100%" }}
@@ -109,7 +111,10 @@ const InvoiceBody = () => {
                     </Text>
                     <Text {...HeadingS}>{clientName}</Text>
                     <Text {...BodyText} color="color.7">
-                      84 Church Way Bradford BD1 9PB United Kingdom
+                      {clientAddress.streetAddress}
+                      {clientAddress.city}
+                      {clientAddress.postCode}
+                      {clientAddress.country}
                     </Text>
                   </Flex>
                 </Flex>
