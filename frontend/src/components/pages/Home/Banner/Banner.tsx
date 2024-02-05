@@ -1,4 +1,4 @@
-import { Flex, Text, Image } from "@chakra-ui/react";
+import { Flex, Text, Image, Link } from "@chakra-ui/react";
 import {
   HeadingM,
   BodyTextVariant,
@@ -53,12 +53,12 @@ const Banner = () => {
       </Flex>
       <Flex width={{ base: "28%" }}>
         <Flex
-          as="button"
           width={{ base: "5.625rem" }}
           height={{ base: "2.75rem" }}
           bgColor="color.1"
           color="white"
           borderRadius="1.5rem"
+          display="flex"
           alignItems="center"
           {...HeadingS}
         >
