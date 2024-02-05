@@ -7,7 +7,7 @@ const InvoiceButtons = () => {
       height={{ base: "5.6875rem" }}
       justifyContent={{ base: "space-between" }}
       padding={{ base: "mobile.22" }}
-      border="1px solid red"
+      marginBottom={{ base: "40px" }}
     >
       <Box as="button" {...Button3}>
         Edit
