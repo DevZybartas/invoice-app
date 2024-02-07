@@ -7,6 +7,7 @@ import Status from "./Status";
 import InvoiceBody from "./InvoiceBody";
 import Summary from "./Summary";
 import InvoiceButtons from "./InvoiceButtons";
+import ComfirmModal from "../ComfirmDeletion/ComfirmModal";
 
 const InvoiceDetail = () => {
   return (
@@ -25,6 +26,8 @@ const InvoiceDetail = () => {
       <Summary />
 
       <InvoiceButtons />
+
+      <ComfirmModal />
     </Flex>
   );
 };

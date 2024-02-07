@@ -2,6 +2,9 @@ import { createContext } from "react";
 //React query
 import { useQuery } from "react-query";
 
+//Chakra
+import { useDisclosure } from "@chakra-ui/react";
+
 //Axios
 import axios from "axios";
 
@@ -11,6 +14,9 @@ import { InvoiceItem } from "../types/types";
 type InvoiceContextProps = {
   data: InvoiceItem[];
   getInvoices: () => void;
+  isOpen: boolean;
+  onClose: () => void;
+  onOpen: () => void;
 };
 
 type InvoiceProvider = {
@@ -20,6 +26,7 @@ type InvoiceProvider = {
 export const InvoiceContext = createContext({} as InvoiceContextProps);
 
 export const InvoiceContextProvider = ({ children }: InvoiceProvider) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   //Get all invoices
   const getInvoices = async () => {
     try {
@@ -40,7 +47,9 @@ export const InvoiceContextProvider = ({ children }: InvoiceProvider) => {
   console.log(data);
 
   return (
-    <InvoiceContext.Provider value={{ getInvoices, data, status, isLoading }}>
+    <InvoiceContext.Provider
+      value={{ getInvoices, data, status, isLoading, isOpen, onOpen, onClose }}
+    >
       {children}
     </InvoiceContext.Provider>
   );

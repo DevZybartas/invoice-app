@@ -1,6 +1,10 @@
 import { Flex, Box } from "@chakra-ui/react";
 import { Button5, Button3, Button2 } from "../../../../../styles/Buttonts";
+
+import { useContext } from "react";
+import { InvoiceContext } from "../../../../../context/InvoiceContext";
 const InvoiceButtons = () => {
+  const { onOpen } = useContext(InvoiceContext);
   return (
     <Flex
       width={{ base: "100%" }}
@@ -12,7 +16,7 @@ const InvoiceButtons = () => {
       <Box as="button" {...Button3}>
         Edit
       </Box>
-      <Box as="button" {...Button5}>
+      <Box onClick={onOpen} as="button" {...Button5}>
         Delete
       </Box>
       <Box as="button" {...Button2}>
