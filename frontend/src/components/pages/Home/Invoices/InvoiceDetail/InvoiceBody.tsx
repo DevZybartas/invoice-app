@@ -110,12 +110,12 @@ const InvoiceBody = () => {
                       Bill to
                     </Text>
                     <Text {...HeadingS}>{clientName}</Text>
-                    <Text {...BodyText} color="color.7">
-                      {clientAddress.streetAddress}
-                      {clientAddress.city}
-                      {clientAddress.postCode}
-                      {clientAddress.country}
-                    </Text>
+                    <Flex color="color.7" flexDir={{ base: "column" }}>
+                      <Text {...BodyText}> {clientAddress.streetAddress}</Text>
+                      <Text {...BodyText}> {clientAddress.city}</Text>
+                      <Text {...BodyText}> {clientAddress.postCode}</Text>
+                      <Text {...BodyText}> {clientAddress.country}</Text>
+                    </Flex>
                   </Flex>
                 </Flex>
               </Flex>
