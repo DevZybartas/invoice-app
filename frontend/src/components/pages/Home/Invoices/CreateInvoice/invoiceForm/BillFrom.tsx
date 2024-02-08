@@ -5,7 +5,9 @@ import { HeadingSVariant } from "../../../../../../styles/Typography";
 //Components
 import InputField from "./InputField";
 
-const BillFrom = () => {
+//Types
+
+const BillFrom = ({ register, errors }) => {
   return (
     <Flex flexDir={{ base: "column" }} width={{ base: "100%" }}>
       <Text
@@ -19,7 +21,11 @@ const BillFrom = () => {
 
       {/* Street Address */}
       <Flex width={{ base: "100%" }}>
-        <InputField label="Street Address" placeholder="19 Union Terrace" />
+        <InputField
+          {...register("streetAddress")}
+          label="Street Address"
+          placeholder="19 Union Terrace"
+        />
       </Flex>
       {/* Street Address */}
 

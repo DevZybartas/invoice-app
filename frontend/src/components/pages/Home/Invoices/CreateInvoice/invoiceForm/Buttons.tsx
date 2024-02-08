@@ -1,11 +1,20 @@
 import { Flex, Button } from "@chakra-ui/react";
 import { Button1 } from "../../../../../../styles/Buttonts";
-const Buttons = () => {
+
+//Types
+
+import { FormProps } from "react-hook-form";
+const Buttons: React.FC<FormProps> = ({ handleSubmit }) => {
+  const handleForm = () => {
+    handleSubmit();
+  };
   return (
     <Flex>
       <Button {...Button1}>Discard</Button>
       <Button {...Button1}>Save As Draft</Button>
-      <Button {...Button1}>Save & Send</Button>
+      <Button onClick={() => handleForm()} {...Button1}>
+        Save & Send
+      </Button>
     </Flex>
   );
 };
