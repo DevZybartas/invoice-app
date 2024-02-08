@@ -14,6 +14,12 @@ const invoiceSchema = new Schema({
     postCode: { type: Number },
     country: { type: String },
   },
+
+  itemList: {
+    itemName: { type: String, required: true },
+    qty: { type: Number, required: true },
+    price: { type: Number, required: true },
+  },
   clientName: { type: String, required: true },
   clientEmail: { type: String, required: true },
   invoiceDate: { type: Date, required: true },

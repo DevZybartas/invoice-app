@@ -54,6 +54,12 @@ interface CreateInvc {
     postCode: number;
     country: string;
   };
+
+  itemList: {
+    itemName: string;
+    qty: number;
+    price: number;
+  };
 }
 
 export const createInvoice: RequestHandler<
@@ -65,6 +71,7 @@ export const createInvoice: RequestHandler<
   const {
     clientAddress,
     address,
+    itemList,
     clientName,
     clientEmail,
     invoiceDate,
@@ -82,6 +89,7 @@ export const createInvoice: RequestHandler<
       paymentTerms,
       projectDesc,
       price,
+      itemList,
     });
     res.status(201).json(newInvoice);
   } catch (error) {

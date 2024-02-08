@@ -5,8 +5,7 @@ import { useQuery } from "react-query";
 //Chakra
 import { useDisclosure } from "@chakra-ui/react";
 
-//Axios
-import axios from "axios";
+import { getInvoices } from "../api/invoices_api";
 
 //Types
 import { InvoiceItem } from "../types/types";
@@ -27,18 +26,14 @@ export const InvoiceContext = createContext({} as InvoiceContextProps);
 
 export const InvoiceContextProvider = ({ children }: InvoiceProvider) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  //Get all invoices
-  const getInvoices = async () => {
-    try {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const response = await axios.get("http://localhost:5000/api/invoices");
-      return response.data;
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   // Create invoice
+
+  // const createInvoice = async () => {
+  //   try {
+  //     const newInvoice = await axios.post("http://localhost:5000/api/invoices");
+  //   } catch (error) {}
+  // };
 
   const { data, status, isLoading } = useQuery<InvoiceItem[]>(
     "invoices",

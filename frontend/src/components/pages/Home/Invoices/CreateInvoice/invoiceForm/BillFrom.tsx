@@ -25,6 +25,7 @@ const BillFrom = ({ register, errors }) => {
           {...register("streetAddress")}
           label="Street Address"
           placeholder="19 Union Terrace"
+          errors={errors.name}
         />
       </Flex>
       {/* Street Address */}

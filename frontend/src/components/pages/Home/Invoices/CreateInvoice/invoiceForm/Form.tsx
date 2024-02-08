@@ -1,7 +1,11 @@
 import { Flex } from "@chakra-ui/react";
 
 //React hook form
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
+
+// React query
+
+import { useMutation } from "react-query";
 
 //Components
 import BillFrom from "./BillFrom";
@@ -24,13 +28,12 @@ const Form: React.FC<FormProps> = () => {
     register,
     handleSubmit,
     watch,
+    getValues,
     formState: { errors },
   } = useForm<Inputs>();
 
-  console.log(watch("streetAddress"));
-
   const onSubmit = () => {
-    console.log("good");
+    console.log(watch("streetAddress"));
   };
 
   return (
@@ -42,7 +45,7 @@ const Form: React.FC<FormProps> = () => {
       <BillFrom register={register} errors={errors} />
       <BillTo />
       <ItemList />
-      <Buttons handleSubmit={onSubmit} />
+      <Buttons handleSubmit={onSubmit} getValues={getValues} />
     </Flex>
   );
 };
