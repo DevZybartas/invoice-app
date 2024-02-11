@@ -3,8 +3,7 @@ import { Button1 } from "../../../../../../styles/Buttonts";
 
 //Types
 
-import { FormProps } from "react-hook-form";
-const Buttons: React.FC<FormProps> = ({ handleSubmit, getValues }) => {
+const Buttons = ({ handleSubmit, getValues }) => {
   const handleForm = () => {
     handleSubmit();
     const values = getValues();

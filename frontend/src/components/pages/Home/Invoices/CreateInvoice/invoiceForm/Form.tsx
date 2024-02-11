@@ -1,17 +1,23 @@
-import { Flex } from "@chakra-ui/react";
+import { Flex, Button } from "@chakra-ui/react";
 
 //React hook form
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 // React query
-
-import { useMutation } from "react-query";
 
 //Components
 import BillFrom from "./BillFrom";
 import BillTo from "./BillTo";
 import ItemList from "./ItemList";
 import Buttons from "./Buttons";
+
+import CreateInvoice from "../CreateInvoice";
+
+import { InvoiceItem } from "../../../../../../types/types";
+
+//Types
+import { UseFormRegister, FieldValues } from "react-hook-form";
+import axios from "axios";
 
 // Types
 type Inputs = {
@@ -21,19 +27,34 @@ type Inputs = {
 
 export type FormProps = {
   handleSubmit: () => void;
+  register: UseFormRegister<FieldValues>;
+};
+
+type FormValues = {
+  firstName: string;
+  lastName: string;
+  email: string;
 };
 
 const Form: React.FC<FormProps> = () => {
   const {
     register,
     handleSubmit,
-    watch,
     getValues,
     formState: { errors },
-  } = useForm<Inputs>();
+  } = useForm<FormValues>();
 
-  const onSubmit = () => {
-    console.log(watch("streetAddress"));
+  const onSubmit: SubmitHandler<InvoiceItem> = async (data) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/invoices",
+        data,
+        { headers: { "Content-Type": "application/json" } }
+      );
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -43,9 +64,9 @@ const Form: React.FC<FormProps> = () => {
       flexDir={{ base: "column" }}
     >
       <BillFrom register={register} errors={errors} />
-      <BillTo />
-      <ItemList />
-      <Buttons handleSubmit={onSubmit} getValues={getValues} />
+      <BillTo register={register} errors={errors} />
+      <ItemList register={register} errors={errors} />
+      <Buttons handleSubmit={handleSubmit(onSubmit)} getValues={getValues} />
     </Flex>
   );
 };

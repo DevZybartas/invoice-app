@@ -1,15 +1,43 @@
 import { Flex, Text, Image, Button } from "@chakra-ui/react";
 import InputField from "./InputField";
-const ItemList = () => {
+
+import { UseFormRegister, FieldValues } from "react-hook-form";
+
+//Types
+
+type ItemListProps = {
+  errors: {
+    qty: number;
+    price: number;
+    itemName: string;
+  };
+  register: UseFormRegister<FieldValues>;
+};
+const ItemList: React.FC<ItemListProps> = ({ register, errors }) => {
   return (
     <Flex width={{ base: "100%" }} flexDir={{ base: "column" }}>
       <Text as="label">Item list</Text>
       <Flex width={{ base: "100%" }} flexDir={{ base: "column" }}>
-        <InputField label="Item name" placeholder="Banner design" />
+        <InputField
+          {...register("itemName", { required: "Field can't be empty" })}
+          errors={errors.itemName}
+          label="Item name"
+          placeholder="Banner design"
+        />
       </Flex>
       <Flex>
-        <InputField label="Qty" placeholder="1" />
-        <InputField label="Price" placeholder="156.00" />
+        <InputField
+          {...register("qty", { required: "Field can't be empty" })}
+          errors={errors.qty}
+          label="Qty"
+          placeholder="1"
+        />
+        <InputField
+          {...register("price", { required: "Field can't be empty" })}
+          errors={errors.price}
+          label="Price"
+          placeholder="156.00"
+        />
         <Flex flexDir={{ base: "column" }}>
           <Text>Total</Text>
           <Text>156</Text>
