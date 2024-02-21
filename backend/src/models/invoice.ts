@@ -16,9 +16,9 @@ const invoiceSchema = new Schema({
   },
 
   itemList: {
-    itemName: { type: String, required: true },
-    qty: { type: Number, required: true },
-    price: { type: Number, required: true },
+    itemName: { type: String },
+    qty: { type: Number },
+    price: { type: Number },
   },
   clientName: { type: String, required: true },
   clientEmail: { type: String, required: true },

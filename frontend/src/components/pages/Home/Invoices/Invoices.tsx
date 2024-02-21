@@ -4,24 +4,34 @@ import Invoice from "./Invoice";
 //Types
 import { InvoiceItem } from "../../../../types/types";
 
-//Context
-import { useContext } from "react";
-import { InvoiceContext } from "../../../../context/InvoiceContext";
-
+import { useGetInvoicesQuery } from "../../../../features/api/invoicesApi";
 const Invoices = () => {
-  const { data, isLoading, status } = useContext(InvoiceContext);
+  const {
+    data: invoices,
+    isLoading,
+    isSuccess,
+    isError,
+    error,
+  } = useGetInvoicesQuery();
+
+  console.log(invoices);
+
+  let content;
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    <p>Loading...</p>;
   }
 
-  if (status === "error") {
-    return <p>Error!</p>;
+  if (isSuccess) {
+    content = JSON.stringify(invoices);
+  }
+  if (isError) {
+    <p>{error.message}</p>;
   }
 
   return (
     <>
-      {data.map((item: InvoiceItem) => (
+      {invoices?.map((item: InvoiceItem) => (
         <Invoice key={item._id} {...item} />
       ))}
     </>
