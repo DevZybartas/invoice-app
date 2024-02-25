@@ -9,9 +9,13 @@ const invoiceSchema = new Schema({
   city: { type: String },
   postCode: { type: Number },
   country: { type: String },
-  itemName: { type: String },
-  qty: { type: Number },
-  itemPrice: { type: Number },
+  itemList: [
+    {
+      itemName: { type: String },
+      qty: { type: Number },
+      itemPrice: { type: Number },
+    },
+  ],
   clientName: { type: String, required: true },
   clientEmail: { type: String, required: true },
   invoiceDate: { type: Date, required: true },

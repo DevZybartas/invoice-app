@@ -9,7 +9,7 @@ export const invoiceApi = createApi({
 
     createInvoice: builder.mutation({
       query: (data) => ({
-        url: "http://localhost:5000/api/invoices",
+        url: "/api/invoices",
         method: "POST",
         body: data,
       }),

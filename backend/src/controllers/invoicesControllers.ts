@@ -46,6 +46,7 @@ interface CreateInvc {
   clientPostCode: number;
   clientCountry: string;
   streetAddress: string;
+  itemList: [];
   city: string;
   postCode: number;
   country: string;
@@ -75,6 +76,7 @@ export const createInvoice: RequestHandler<
     postCode,
     country,
     itemName,
+    itemList,
     qty,
     itemPrice,
   } = req.body;
@@ -96,6 +98,7 @@ export const createInvoice: RequestHandler<
       itemName,
       qty,
       itemPrice,
+      itemList,
     });
     res.status(201).json(newInvoice);
   } catch (error) {
