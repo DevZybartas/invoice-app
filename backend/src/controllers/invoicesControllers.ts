@@ -41,25 +41,17 @@ interface CreateInvc {
   paymentTerms: number;
   projectDesc: string;
   price: number;
-  clientAddress: {
-    streetAddress: string;
-    city: string;
-    postCode: number;
-    country: string;
-  };
-
-  address: {
-    streetAddress: string;
-    city: string;
-    postCode: number;
-    country: string;
-  };
-
-  itemList: {
-    itemName: string;
-    qty: number;
-    price: number;
-  };
+  clientStreetAddress: string;
+  clientCity: string;
+  clientPostCode: number;
+  clientCountry: string;
+  streetAddress: string;
+  city: string;
+  postCode: number;
+  country: string;
+  itemName: string;
+  qty: number;
+  itemPrice: number;
 }
 
 export const createInvoice: RequestHandler<
@@ -69,27 +61,41 @@ export const createInvoice: RequestHandler<
   unknown
 > = async (req, res, next) => {
   const {
-    clientAddress,
-    address,
-    itemList,
     clientName,
     clientEmail,
     invoiceDate,
     paymentTerms,
     projectDesc,
     price,
+    clientStreetAddress,
+    clientCity,
+    clientPostCode,
+    clientCountry,
+    streetAddress,
+    postCode,
+    country,
+    itemName,
+    qty,
+    itemPrice,
   } = req.body;
   try {
     const newInvoice = await InvoiceModel.create({
-      clientAddress,
-      address,
-      clientEmail,
       clientName,
+      clientEmail,
       invoiceDate,
       paymentTerms,
       projectDesc,
       price,
-      itemList,
+      clientStreetAddress,
+      clientCity,
+      clientPostCode,
+      clientCountry,
+      streetAddress,
+      postCode,
+      country,
+      itemName,
+      qty,
+      itemPrice,
     });
     res.status(201).json(newInvoice);
   } catch (error) {

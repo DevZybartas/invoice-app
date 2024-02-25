@@ -6,7 +6,15 @@ export const invoiceApi = createApi({
     getInvoices: builder.query({
       query: () => "/api/invoices",
     }),
+
+    createInvoice: builder.mutation({
+      query: (data) => ({
+        url: "http://localhost:5000/api/invoices",
+        method: "POST",
+        body: data,
+      }),
+    }),
   }),
 });
 
-export const { useGetInvoicesQuery } = invoiceApi;
+export const { useGetInvoicesQuery, useCreateInvoiceMutation } = invoiceApi;

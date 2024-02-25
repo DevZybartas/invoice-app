@@ -3,21 +3,21 @@ import { Flex, Text } from "@chakra-ui/react";
 //Chakra ui
 import { BodyText, HeadingS } from "../../../../../styles/Typography";
 
-//Context
-import { useContext } from "react";
-import { InvoiceContext } from "../../../../../context/InvoiceContext";
+import { useGetInvoicesQuery } from "../../../../../features/api/invoicesApi";
 
 import { useParams } from "react-router-dom";
 
-const InvoiceBody = () => {
-  const { data } = useContext(InvoiceContext);
+import { InvoiceItem } from "../../../../../types/types";
 
+const InvoiceBody = () => {
+  const { data: invoices } = useGetInvoicesQuery();
+  console.log(invoices);
   const { id } = useParams();
 
   return (
     <>
-      {data
-        ?.filter((item) => item._id === id)
+      {invoices
+        ?.filter((item: InvoiceItem) => item._id === id)
         .map(
           ({
             invoiceDate,
@@ -26,8 +26,10 @@ const InvoiceBody = () => {
             clientName,
             paymentTerms,
             projectDesc,
-            clientAddress,
-            address,
+            streetAddress,
+            city,
+            postCode,
+            country,
           }) => (
             <Flex
               width={{ base: "100%" }}
@@ -111,10 +113,10 @@ const InvoiceBody = () => {
                     </Text>
                     <Text {...HeadingS}>{clientName}</Text>
                     <Flex color="color.7" flexDir={{ base: "column" }}>
-                      <Text {...BodyText}> {clientAddress.streetAddress}</Text>
-                      <Text {...BodyText}> {clientAddress.city}</Text>
-                      <Text {...BodyText}> {clientAddress.postCode}</Text>
-                      <Text {...BodyText}> {clientAddress.country}</Text>
+                      <Text {...BodyText}> {streetAddress}</Text>
+                      <Text {...BodyText}> {city}</Text>
+                      <Text {...BodyText}> {postCode}</Text>
+                      <Text {...BodyText}> {country}</Text>
                     </Flex>
                   </Flex>
                 </Flex>

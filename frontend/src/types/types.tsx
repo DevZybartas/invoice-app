@@ -6,17 +6,15 @@ export interface InvoiceItem {
   projectDesc: string;
   _id: string;
   price: number;
-
-  clientAddress: {
-    streetAddress: string;
-    city: string;
-    postCode: number;
-    country: string;
-  };
-  address: {
-    streetAddress: string;
-    city: string;
-    postCode: number;
-    country: string;
-  };
+  ClientStreetAddress: string;
+  ClientCity: string;
+  ClientPostCode: number;
+  ClientCountry: string;
+  streetAddress: string;
+  city: string;
+  postCode: number;
+  country: string;
+  itemName: string;
+  qty: number;
+  itemPrice: number;
 }

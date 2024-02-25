@@ -23,6 +23,7 @@ const Invoices = () => {
   }
 
   if (isSuccess) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     content = JSON.stringify(invoices);
   }
   if (isError) {

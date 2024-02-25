@@ -11,7 +11,7 @@ import BillTo from "./BillTo";
 import ItemList from "./ItemList";
 import Buttons from "./Buttons";
 
-import CreateInvoice from "../CreateInvoice";
+import { useCreateInvoiceMutation } from "../../../../../../features/api/invoicesApi";
 
 import { InvoiceItem } from "../../../../../../types/types";
 
@@ -37,6 +37,7 @@ type FormValues = {
 };
 
 const Form: React.FC<FormProps> = () => {
+  const [createInvoice] = useCreateInvoiceMutation();
   const {
     register,
     handleSubmit,
@@ -45,12 +46,9 @@ const Form: React.FC<FormProps> = () => {
   } = useForm<FormValues>();
 
   const onSubmit: SubmitHandler<InvoiceItem> = async (data) => {
+    console.log(data);
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/invoices",
-        data,
-        { headers: { "Content-Type": "application/json" } }
-      );
+      const response = await createInvoice(data);
       return response.data;
     } catch (error) {
       console.log(error);
