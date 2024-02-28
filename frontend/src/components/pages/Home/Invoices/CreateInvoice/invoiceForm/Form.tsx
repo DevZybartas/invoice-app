@@ -42,6 +42,7 @@ const Form: React.FC<FormProps> = () => {
     register,
     handleSubmit,
     getValues,
+    control,
     formState: { errors },
   } = useForm<FormValues>();
 
@@ -63,7 +64,7 @@ const Form: React.FC<FormProps> = () => {
     >
       <BillFrom register={register} errors={errors} />
       <BillTo register={register} errors={errors} />
-      <ItemList register={register} errors={errors} />
+      <ItemList register={register} errors={errors} control={control} />
       <Buttons handleSubmit={handleSubmit(onSubmit)} getValues={getValues} />
     </Flex>
   );
