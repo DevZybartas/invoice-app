@@ -1,7 +1,7 @@
-import { Flex, Button } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 
 //React hook form
-import { SubmitHandler, useForm } from "react-hook-form";
+import { SubmitHandler, useForm, useFieldArray } from "react-hook-form";
 
 // React query
 
@@ -17,7 +17,6 @@ import { InvoiceItem } from "../../../../../../types/types";
 
 //Types
 import { UseFormRegister, FieldValues } from "react-hook-form";
-import axios from "axios";
 
 // Types
 type Inputs = {
@@ -64,7 +63,12 @@ const Form: React.FC<FormProps> = () => {
     >
       <BillFrom register={register} errors={errors} />
       <BillTo register={register} errors={errors} />
-      <ItemList register={register} errors={errors} control={control} />
+      <ItemList
+        register={register}
+        errors={errors}
+        control={control}
+        useFieldArray={useFieldArray}
+      />
       <Buttons handleSubmit={handleSubmit(onSubmit)} getValues={getValues} />
     </Flex>
   );

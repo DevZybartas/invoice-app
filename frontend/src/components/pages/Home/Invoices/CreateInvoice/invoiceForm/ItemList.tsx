@@ -1,12 +1,14 @@
-import { Flex, Text, Image, Button } from "@chakra-ui/react";
+import { Flex, Text, Image, Button, Input } from "@chakra-ui/react";
 import InputField from "./InputField";
 
-import { UseFormRegister, FieldValues, useFieldArray } from "react-hook-form";
-import { useState } from "react";
+import { UseFormRegister, FieldValues } from "react-hook-form";
 
 //Types
 
 type ItemListProps = {
+  qty: number;
+  price: number;
+  itemName: string;
   errors: {
     qty: number;
     price: number;
@@ -14,25 +16,28 @@ type ItemListProps = {
   };
   register: UseFormRegister<FieldValues>;
 };
-const ItemList: React.FC<ItemListProps> = ({ register, errors }) => {
-  const [inputs, setInputs] = useState([{ itemName: "", qty: "", price: "" }]);
+const ItemList: React.FC<ItemListProps> = ({
+  register,
+  errors,
+  useFieldArray,
+  control,
+}) => {
+  const { append, fields, remove } = useFieldArray({
+    control,
+    name: "test",
+  });
 
-  const handleInputChange = (e, i) => {
-    const field = e.target.name;
-    const newInputs = [...inputs];
-    newInputs[i][field] = e.target.value;
-    setInputs(newInputs);
+  const getTotal = (payload: ItemListProps["price"]) => {
+    let total = 0;
+    for (const item of payload) {
+      total = total + item.price;
+    }
   };
 
-  const handleAddInput = () => {
-    setInputs([...inputs, { itemName: "", qty: "", price: "" }]);
+  const TotalAmount = ({ control }: { control: Control<ItemListProps> }) => {
+    return null;
   };
 
-  const handleDeleteTodo = (i) => {
-    const newInputs = [...inputs];
-    newInputs.splice(i, 1);
-    setInputs(newInputs);
-  };
   return (
     <Flex width={{ base: "100%" }} flexDir={{ base: "column" }}>
       <Text as="label">Item list</Text>
@@ -69,50 +74,62 @@ const ItemList: React.FC<ItemListProps> = ({ register, errors }) => {
         />
       </Flex>
       <Flex>
-        {inputs.map((val, i) => (
-          <>
-            <Flex flexDir={{ base: "column" }} key={i} border="1px solid red">
-              <Flex width={{ base: "100%" }} flexDir={{ base: "column" }}>
-                <InputField
-                  {...register("itemName", {
-                    required: "Field can't be empty",
-                  })}
-                  errors={errors.itemName}
-                  label="Item name"
-                  placeholder="Banner design"
-                />
-              </Flex>
-              <Flex>
-                <InputField
-                  {...register("qty", { required: "Field can't be empty" })}
-                  errors={errors.qty}
-                  label="Qty"
-                  placeholder="1"
-                />
-                <InputField
-                  {...register("price", { required: "Field can't be empty" })}
-                  errors={errors.price}
-                  label="Price"
-                  placeholder="156.00"
-                />
-                <Flex flexDir={{ base: "column" }}>
-                  <Text>Total</Text>
-                  <Text>156</Text>
-                </Flex>
-                <Image
-                  src="/icon-delete.svg"
-                  alt="delete"
-                  width={{ base: "13px" }}
-                  height={{ base: "16px" }}
-                  onClick={() => handleDeleteTodo(i)}
-                />
-              </Flex>
+        {fields.map((field, index) => (
+          <Flex
+            flexDir={{ base: "column" }}
+            key={field.id}
+            border="1px solid red"
+          >
+            <Flex width={{ base: "100%" }} flexDir={{ base: "column" }}>
+              <InputField
+                {...register(`test.${index}.itemName`, {
+                  required: "Field can't be empty",
+                })}
+                errors={errors.itemName}
+                label="Item name"
+                placeholder="Banner design"
+              />
             </Flex>
-          </>
+            <Flex>
+              <InputField
+                {...register(`test.${index}.qty`, {
+                  required: "Field can't be empty",
+                })}
+                errors={errors.qty}
+                label="Qty"
+                placeholder="1"
+              />
+              <InputField
+                {...register(`test.${index}.price`, {
+                  required: "Field can't be empty",
+                })}
+                errors={errors.price}
+                label="Price"
+                placeholder="156.00"
+              />
+              <Flex flexDir={{ base: "column" }}>
+                <TotalAmount control={control} />
+                <Text>156</Text>
+              </Flex>
+              <Image
+                src="/icon-delete.svg"
+                alt="delete"
+                width={{ base: "13px" }}
+                height={{ base: "16px" }}
+                onClick={() => remove(index)}
+              />
+            </Flex>
+          </Flex>
         ))}
       </Flex>
 
-      <Button onClick={handleAddInput}>+ Add New Item</Button>
+      <Button
+        onClick={() => {
+          append();
+        }}
+      >
+        Add new item
+      </Button>
     </Flex>
   );
 };
