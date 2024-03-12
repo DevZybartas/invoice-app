@@ -42,6 +42,7 @@ const Form: React.FC<FormProps> = () => {
     handleSubmit,
     getValues,
     control,
+    watch,
     formState: { errors },
   } = useForm<FormValues>();
 
@@ -68,6 +69,7 @@ const Form: React.FC<FormProps> = () => {
         errors={errors}
         control={control}
         useFieldArray={useFieldArray}
+        watch={watch}
       />
       <Buttons handleSubmit={handleSubmit(onSubmit)} getValues={getValues} />
     </Flex>

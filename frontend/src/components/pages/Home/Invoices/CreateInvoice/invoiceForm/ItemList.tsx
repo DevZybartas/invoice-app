@@ -1,7 +1,7 @@
-import { Flex, Text, Image, Button, Input } from "@chakra-ui/react";
+import { Flex, Text, Image, Button } from "@chakra-ui/react";
 import InputField from "./InputField";
 
-import { UseFormRegister, FieldValues } from "react-hook-form";
+import { UseFormRegister, FieldValues, useWatch } from "react-hook-form";
 
 //Types
 
@@ -21,27 +21,30 @@ const ItemList: React.FC<ItemListProps> = ({
   errors,
   useFieldArray,
   control,
+  watch,
 }) => {
   const { append, fields, remove } = useFieldArray({
     control,
     name: "test",
   });
 
-  const getTotal = (payload: ItemListProps["price"]) => {
-    let total = 0;
-    for (const item of payload) {
-      total = total + item.price;
-    }
-  };
-
-  const TotalAmount = ({ control }: { control: Control<ItemListProps> }) => {
-    return null;
+  const Total = ({ control }: { control: Control<FormValues> }) => {
+    const formValues = useWatch({
+      name: "test",
+      control,
+    });
+    const total = formValues.reduce(
+      (acc, current) => acc + (current.price || 0) * (current.qty || 0),
+      0
+    );
+    console.log(formValues);
+    return <p>{total}</p>;
   };
 
   return (
     <Flex width={{ base: "100%" }} flexDir={{ base: "column" }}>
       <Text as="label">Item list</Text>
-      <Flex width={{ base: "100%" }} flexDir={{ base: "column" }}>
+      {/* <Flex width={{ base: "100%" }} flexDir={{ base: "column" }}>
         <InputField
           {...register("itemName", { required: "Field can't be empty" })}
           errors={errors.itemName}
@@ -72,8 +75,8 @@ const ItemList: React.FC<ItemListProps> = ({
           width={{ base: "13px" }}
           height={{ base: "16px" }}
         />
-      </Flex>
-      <Flex>
+      </Flex> */}
+      <Flex flexDir={{ base: "column" }}>
         {fields.map((field, index) => (
           <Flex
             flexDir={{ base: "column" }}
@@ -108,7 +111,6 @@ const ItemList: React.FC<ItemListProps> = ({
                 placeholder="156.00"
               />
               <Flex flexDir={{ base: "column" }}>
-                <TotalAmount control={control} />
                 <Text>156</Text>
               </Flex>
               <Image
@@ -130,6 +132,7 @@ const ItemList: React.FC<ItemListProps> = ({
       >
         Add new item
       </Button>
+      <Total control={control} />
     </Flex>
   );
 };
